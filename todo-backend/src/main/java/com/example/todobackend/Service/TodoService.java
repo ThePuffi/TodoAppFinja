@@ -1,15 +1,10 @@
 package com.example.todobackend.Service;
 
-import com.example.todobackend.DTO.TodoDTO;
-import com.example.todobackend.Entity.Group;
 import com.example.todobackend.Entity.Todo;
-import com.example.todobackend.Mapper.TodoMapper;
-import com.example.todobackend.Repository.GroupRepository;
 import com.example.todobackend.Repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,35 +13,29 @@ import java.util.Optional;
 public class TodoService {
 
     private final TodoRepository todoRepository;
-    private final GroupRepository groupRepository;
-    private final TodoMapper todoMapper;
 
-    private final String doesNotExist = "Todo does not exit";
-
-    public TodoDTO addTodo(Todo todo) {
+    public Todo addTodo(Todo todo) {
         Optional<Todo> todoOptional = todoRepository.findById(todo.getId());
-        Optional<Group> groupOptional = groupRepository.findById(todo.getGroup().getId());
-        if (todoOptional.isPresent() || groupOptional.isEmpty()) {
+        if (todoOptional.isPresent()) {
             throw new IllegalArgumentException("Group already exists");
         }
-        return todoMapper.entityToDto(todoRepository.save(todo));
+        return todoRepository.save(todo);
     }
 
-    public TodoDTO editTodo(Todo todo) {
+    public Todo editTodo(Todo todo) {
         Optional<Todo> todoOptional = todoRepository.findById(todo.getId());
-        Optional<Group> groupOptional = groupRepository.findById(todo.getGroup().getId());
-        if (todoOptional.isPresent() && groupOptional.isPresent()) {
-            return todoMapper.entityToDto(todoRepository.save(todo));
+        if (todoOptional.isPresent()) {
+            return todoRepository.save(todo);
         }
-        throw new IllegalArgumentException(doesNotExist);
+        throw new IllegalArgumentException("Todo does not exit");
     }
 
-    public TodoDTO getTodo(long id) {
+    public Todo getTodo(long id) {
         Optional<Todo> todoOptional = todoRepository.findById(id);
         if (todoOptional.isPresent()) {
-            return todoMapper.entityToDto(todoOptional.get());
+            return todoOptional.get();
         }
-        throw new IllegalArgumentException(doesNotExist);
+        throw new IllegalArgumentException("Todo does not exit");
     }
 
     public void deleteTodo(long id) {
@@ -55,15 +44,10 @@ public class TodoService {
             todoRepository.deleteById(id);
             return;
         }
-        throw new IllegalArgumentException(doesNotExist);
+        throw new IllegalArgumentException("Todo does not exit");
     }
 
-    public List<TodoDTO> getAllTodos() {
-        List<TodoDTO> todos = new ArrayList<>();
-        List<Todo> todosEntity = todoRepository.findAll();
-        todosEntity.forEach(todo -> {
-            todos.add(todoMapper.entityToDto(todo));
-        });
-        return todos;
+    public List<Todo> getAllTodos() {
+        return todoRepository.findAll();
     }
 }

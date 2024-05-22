@@ -1,6 +1,6 @@
 package com.example.todobackend.Controller;
 
-import com.example.todobackend.DTO.GroupDTO;
+import com.example.todobackend.Entity.Group;
 import com.example.todobackend.Service.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,25 +18,25 @@ public class GroupController {
     private final GroupService groupService;
 
     @PostMapping("/addGroup")
-    public ResponseEntity<GroupDTO> addGroup(@RequestBody GroupDTO group) {
+    public ResponseEntity<Group> addGroup(@RequestBody Group group, @RequestParam("memberId") Long memberId) {
         return new ResponseEntity<>(this.groupService.addGroup(group), HttpStatus.CREATED);
     }
     @GetMapping("/getAllGroups")
-    public ResponseEntity<List<GroupDTO>> getAllGroups() {
+    public ResponseEntity<List<Group>> getAllGroups() {
         return new ResponseEntity<>(this.groupService.getAllGroups(), HttpStatus.FOUND);
     }
     @GetMapping("/findGroupById")
-    public ResponseEntity<GroupDTO> findGroupById(@RequestParam Long groupId) {
-        return new ResponseEntity<>(this.groupService.findGroupById(groupId), HttpStatus.FOUND);
+    public ResponseEntity<Group> findGroupById(@RequestParam Long groupId) {
+        return new ResponseEntity<>(this.groupService.getGroup(groupId), HttpStatus.FOUND);
     }
     @PutMapping("/updateGroup")
-    public ResponseEntity<GroupDTO> updateGroup(@RequestBody GroupDTO group) {
-        return new ResponseEntity<>(this.groupService.updateGroup(group), HttpStatus.OK);
+    public ResponseEntity<Group> updateGroup(@RequestBody Group group) {
+        return new ResponseEntity<>(this.groupService.editGroup(group), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteGroup")
-    public ResponseEntity<HttpStatus> deleteGroup(@RequestBody GroupDTO group) {
-        this.groupService.deleteGroup(group);
+    public ResponseEntity<HttpStatus> deleteGroup(@RequestParam long groupId) {
+        this.groupService.deleteGroup(groupId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

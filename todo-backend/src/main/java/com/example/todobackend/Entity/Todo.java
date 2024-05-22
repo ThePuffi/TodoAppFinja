@@ -1,10 +1,16 @@
 package com.example.todobackend.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
+@Entity
+@Getter
+@Setter
 public class Todo {
 
     @Id
@@ -15,8 +21,6 @@ public class Todo {
 
     private boolean status;
 
-    private Member member;
-
     private long groupId;
 
     private long categoryId;
@@ -24,4 +28,5 @@ public class Todo {
     private Date dueDate;
 
     private String description;
+
 }

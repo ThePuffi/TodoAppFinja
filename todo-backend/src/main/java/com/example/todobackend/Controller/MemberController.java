@@ -1,7 +1,7 @@
 package com.example.todobackend.Controller;
 
 
-import com.example.todobackend.DTO.MemberDTO;
+import com.example.todobackend.Entity.Member;
 import com.example.todobackend.Service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,25 +19,25 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/addMember")
-    public ResponseEntity<MemberDTO> addMember(@RequestBody MemberDTO member) {
+    public ResponseEntity<Member> addMember(@RequestBody Member member) {
         return new ResponseEntity<>(this.memberService.addMember(member), HttpStatus.CREATED);
     }
     @GetMapping("/getAllMembers")
-    public ResponseEntity<List<MemberDTO>> getAllMembers() {
+    public ResponseEntity<List<Member>> getAllMembers() {
         return new ResponseEntity<>(this.memberService.getAllMembers(), HttpStatus.FOUND);
     }
     @GetMapping("/findMemberById")
-    public ResponseEntity<MemberDTO> findMemberById(@RequestParam Long memberId) {
-        return new ResponseEntity<>(this.memberService.findMemberById(memberId), HttpStatus.FOUND);
+    public ResponseEntity<Member> findMemberById(@RequestParam Long memberId) {
+        return new ResponseEntity<>(this.memberService.getMember(memberId), HttpStatus.FOUND);
     }
     @PutMapping("/updateMember")
-    public ResponseEntity<MemberDTO> updateMember(@RequestBody MemberDTO member) {
-        return new ResponseEntity<>(this.memberService.updateMember(member), HttpStatus.OK);
+    public ResponseEntity<Member> updateMember(@RequestBody Member member) {
+        return new ResponseEntity<>(this.memberService.editMember(member), HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteMember")
-    public ResponseEntity<HttpStatus> deleteMember(@RequestBody MemberDTO member) {
-        this.memberService.deleteMember(member);
+    public ResponseEntity<HttpStatus> deleteMember(@RequestParam long memberId) {
+        this.memberService.deleteMember(memberId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

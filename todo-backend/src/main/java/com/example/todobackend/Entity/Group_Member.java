@@ -9,11 +9,16 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Group {
+public class Group_Member {
 
     @Id
     @GeneratedValue
     private long id;
 
-    private String name;
+    private long groupId;
+
+    private long memberId;
+
+
+
 }
