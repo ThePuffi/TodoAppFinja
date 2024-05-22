@@ -1,12 +1,12 @@
 package com.example.todobackend.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -14,19 +14,24 @@ import java.util.Date;
 public class Todo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String name;
 
     private boolean status;
 
-    private long groupId;
-
     private long categoryId;
 
     private Date dueDate;
 
     private String description;
+
+    @ManyToMany
+    @JoinTable(
+            name = "member_todo",
+            joinColumns = @JoinColumn(name = "todo_id"),
+            inverseJoinColumns = @JoinColumn(name = "member_id"))
+    private Set<Member> members = new HashSet<>();
 
 }

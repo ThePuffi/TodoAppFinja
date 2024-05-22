@@ -1,6 +1,8 @@
 package com.example.todobackend.Service;
 
+import com.example.todobackend.Entity.Member;
 import com.example.todobackend.Entity.Todo;
+import com.example.todobackend.Repository.MemberRepository;
 import com.example.todobackend.Repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class TodoService {
 
     private final TodoRepository todoRepository;
+    private final MemberRepository memberRepository;
 
     public Todo addTodo(Todo todo) {
         Optional<Todo> todoOptional = todoRepository.findById(todo.getId());
