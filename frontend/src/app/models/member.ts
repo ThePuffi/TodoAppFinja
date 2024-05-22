@@ -7,5 +7,5 @@ export interface Member {
     lastName: string;
     password: string;
     email: string;
-    todos: ToDo[];
+    todos?: ToDo[];
 }
