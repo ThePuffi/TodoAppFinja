@@ -27,7 +27,7 @@ public class TodoController {
         return new ResponseEntity<>(this.todoService.getAllTodos(), HttpStatus.FOUND);
     }
     @GetMapping("/findTodoById")
-    public ResponseEntity<Todo> findTodoById(@RequestParam Long todoId) {
+    public ResponseEntity<Todo> findTodoById(@RequestParam("TodoId") Long todoId) {
         return new ResponseEntity<>(this.todoService.getTodo(todoId), HttpStatus.FOUND);
     }
     @PutMapping("/updateTodo")
@@ -36,7 +36,7 @@ public class TodoController {
     }
 
     @DeleteMapping("/deleteTodo")
-    public ResponseEntity<HttpStatus> deleteTodo(@RequestBody long todoId) {
+    public ResponseEntity<HttpStatus> deleteTodo(@RequestParam("TodoId") long todoId) {
         this.todoService.deleteTodo(todoId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

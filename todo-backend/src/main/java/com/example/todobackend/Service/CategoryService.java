@@ -48,7 +48,7 @@ public class CategoryService {
         throw new IllegalArgumentException("Category does not exit");
     }
 
-    public List<Category> getAllCategorys() {
+    public List<Category> getAllCategories() {
         return  categoryRepository.findAll();
     }
 }

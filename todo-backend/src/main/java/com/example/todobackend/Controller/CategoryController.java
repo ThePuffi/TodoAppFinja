@@ -22,9 +22,9 @@ public class CategoryController {
     public ResponseEntity<Category> addCategory(@RequestBody Category category) {
         return new ResponseEntity<>(this.categoryService.addCategory(category), HttpStatus.CREATED);
     }
-    @GetMapping("/getAllCategorys")
-    public ResponseEntity<List<Category>> getAllCategorys() {
-        return new ResponseEntity<>(this.categoryService.getAllCategorys(), HttpStatus.FOUND);
+    @GetMapping("/getAllCategories")
+    public ResponseEntity<List<Category>> getAllCategories() {
+        return new ResponseEntity<>(this.categoryService.getAllCategories(), HttpStatus.FOUND);
     }
     @GetMapping("/findCategoryById")
     public ResponseEntity<Category> findCategoryById(@RequestParam Long categoryId) {

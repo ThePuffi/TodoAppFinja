@@ -27,7 +27,7 @@ public class MemberController {
         return new ResponseEntity<>(this.memberService.getAllMembers(), HttpStatus.FOUND);
     }
     @GetMapping("/findMemberById")
-    public ResponseEntity<Member> findMemberById(@RequestParam Long memberId) {
+    public ResponseEntity<Member> findMemberById(@RequestParam("MemberId") Long memberId) {
         return new ResponseEntity<>(this.memberService.getMember(memberId), HttpStatus.FOUND);
     }
     @PutMapping("/updateMember")
@@ -36,7 +36,7 @@ public class MemberController {
     }
 
     @DeleteMapping("/deleteMember")
-    public ResponseEntity<HttpStatus> deleteMember(@RequestParam long memberId) {
+    public ResponseEntity<HttpStatus> deleteMember(@RequestParam("MemberId") long memberId) {
         this.memberService.deleteMember(memberId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
