@@ -5,8 +5,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CategoryComponent } from './components/category/category.component';
 
 export const routes: Routes = [
-    { path: "/todos", component: ToDoComponent },
-    { path: "/categories", component: CategoryComponent },
-    { path: "/dashboard", component: DashboardComponent },
-    { path: "/calendar", component: CalendarComponent },
+    { path: "todos", component: ToDoComponent },
+    { path: "categories", component: CategoryComponent },
+    { path: "dashboard", component: DashboardComponent },
+    { path: "calendar", component: CalendarComponent },
+    { path: '',   redirectTo: 'dashboard', pathMatch: 'full' }
 ];
