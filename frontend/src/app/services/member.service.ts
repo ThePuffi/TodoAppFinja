@@ -12,10 +12,13 @@ export class MemberService {
 
   constructor(private http: HttpClient) { }
 
-  public addMember(member: Member): Observable<Member> {
-    return this.http.post<Member>(this.url + "addMember", member);
+  public login(member: Member): Observable<Member> {
+    return this.http.post<Member>(this.url + "login", member);
   }
 
+  public registrate(member: Member): Observable<Member> {
+    return this.http.post<Member>(this.url + "registrate", member);
+  }
   public editMember(member: Member): Observable<Member> {
     return this.http.put<Member>(this.url + "updateMember", member);
   }

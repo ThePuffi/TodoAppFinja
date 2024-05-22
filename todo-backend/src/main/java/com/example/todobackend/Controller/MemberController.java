@@ -18,9 +18,24 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @PostMapping("/addMember")
-    public ResponseEntity<Member> addMember(@RequestBody Member member) {
-        return new ResponseEntity<>(this.memberService.addMember(member), HttpStatus.CREATED);
+    @PostMapping("/login")
+    public ResponseEntity<Member> login(@RequestBody Member member) {
+        Member loggedInMember = memberService.login(member);
+        if (loggedInMember != null) {
+            return new ResponseEntity<>(loggedInMember, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @PostMapping("/registrate")
+    public ResponseEntity<Member> registrate(@RequestBody Member member) {
+        Member registeredMember = memberService.registration(member);
+        if (registeredMember != null) {
+            return new ResponseEntity<>(registeredMember, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
     @GetMapping("/getAllMembers")
     public ResponseEntity<List<Member>> getAllMembers() {

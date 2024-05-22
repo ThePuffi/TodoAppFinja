@@ -14,13 +14,21 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-
-    public Member addMember(Member member) {
+    public Member login(Member member) {
         Optional<Member> memberOptional = memberRepository.findById(member.getId());
-        if (memberOptional.isPresent()) {
-            throw new IllegalArgumentException("Member already exists");
+        if(memberOptional.isPresent() && member.getPassword().equals(memberOptional.get().getPassword())) {
+            return memberOptional.get();
+        }
+        return null;
+    }
+
+    public Member registration(Member member) {
+        Optional<Member> memberOptional = memberRepository.findById(member.getId());
+        if(memberOptional.isPresent()) {
+            return null;
         }
         return memberRepository.save(member);
+
     }
 
     public Member editMember(Member member) {
