@@ -1,1 +1,36 @@
-<p>to-do works!</p>
+<div class="main">
+    <div class="buttons">
+        <button (click)="addTodo()">Create a Todo</button>
+    </div>
+    <div class="todos">
+        <table class="todos-table">
+            <thead>
+                <tr class="table-head-row">
+                    @for (column of columns; track $index) {
+                        <th class="table-header-cell">
+                            <span class="head-outer-span">
+                                <span>{{column.label}}</span>
+                            </span>
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-body-row">
+                    @for (row of displayedTodoData; track $index) {
+                        <td class="table-data-cell">
+                            <span class="body-outer-span">
+                                <span class="head-inner-span">{{row.name}}</span>
+                            </span>
+                        </td>
+                        <td class="table-data-cell">
+                            <span class="body-outer-span">
+                                <span class="head-inner-span">{{row.dueDate | date : 'd/M/yyyy, h:mm a' }}</span>
+                            </span>
+                        </td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
