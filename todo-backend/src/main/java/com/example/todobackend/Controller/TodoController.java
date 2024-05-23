@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller("api/todo")
+@Controller
 @CrossOrigin
+@RequestMapping("api/todo")
 @RequiredArgsConstructor
 public class TodoController {
 

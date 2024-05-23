@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller("api/category")
+@Controller
 @CrossOrigin
+@RequestMapping("api/category")
 @RequiredArgsConstructor
 public class CategoryController {
 

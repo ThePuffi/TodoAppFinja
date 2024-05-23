@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller("api/member")
+@Controller
 @CrossOrigin
+@RequestMapping("api/member")
 @RequiredArgsConstructor
 public class MemberController {
 

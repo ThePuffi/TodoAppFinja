@@ -15,7 +15,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public Member login(Member member) {
-        Optional<Member> memberOptional = memberRepository.findById(member.getId());
+        Optional<Member> memberOptional = memberRepository.findMemberByUsername(member.getUsername());
         if(memberOptional.isPresent() && member.getPassword().equals(memberOptional.get().getPassword())) {
             return memberOptional.get();
         }
