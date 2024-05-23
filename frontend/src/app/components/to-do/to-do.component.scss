@@ -18,6 +18,11 @@
   border-bottom: 1px solid #ddd;
 }
 
+thead th:last-child,
+tbody td:last-child {
+  text-align: right;
+}
+
 .todos-table tfoot td {
   border-bottom: 0;
 }
@@ -116,4 +121,28 @@ h1 {
   background-color: #6160d4;
   color: white;
   cursor: pointer;
+}
+
+.todos-table tfoot {
+    background-color: rgb(235, 235, 245);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #4b4b7c;
+  font-weight: bold;
+}
+
+.todos-table tfoot td:first-child {
+    border-bottom-left-radius: 1rem;
+}
+
+.todos-table tfoot td:last-child {
+    border-bottom-right-radius: 1rem;
 }
