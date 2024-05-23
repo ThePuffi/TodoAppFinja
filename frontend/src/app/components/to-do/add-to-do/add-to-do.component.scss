@@ -1,0 +1,28 @@
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-todo {
+    padding: 10px;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #6160d4;
+    color: white;
+    cursor: pointer;
+}
+
+.cancel {
+    padding: 10px;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #c20000;
+    color: white;
+    cursor: pointer;
+}
+
+.form-fields {
+    display: grid;
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+}

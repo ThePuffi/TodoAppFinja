@@ -1,0 +1,45 @@
+<!-- <mat-dialog-content>
+    <div class="modal">
+        <div class="modal-content">
+            <h2>ToDo hinzufügen</h2>
+            <form [formGroup]="todoForm" (submit)="submitTodo()">
+                <div class="form-fields">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Aufgabe</mat-label>
+                        <input matInput placeholder="Aufgabe" formControlName="name" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Deadline</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="members" required>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Beschreibung</mat-label>
+                        <input matInput placeholder="Beschreibung" formControlName="description" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Partner</mat-label>
+                        <mat-select formControlName="members" required>
+                          @for (member of memberList; track $index) {
+                          <mat-option [value]="member.id">{{member.firstName && member.firstName}}</mat-option>
+                          }
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Kategorie</mat-label>
+                        <mat-select formControlName="categoryId" required>
+                          @for (category of categoryList; track $index) {
+                          <mat-option [value]="category.id">{{category.name}}</mat-option>
+                          }
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="actions">
+                    <button type="reset" class="cancel">Zurücksetzen</button>
+                    <button type="submit" class="add-todo">ToDo hinzufügen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-dialog-content> -->
