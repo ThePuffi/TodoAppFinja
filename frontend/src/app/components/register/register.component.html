@@ -1,0 +1,52 @@
+<div class="login-container">
+  <h1>Register</h1>
+  @if(showErrorMessage) {
+  <p>{{ showErrorMessage }}</p>
+  }
+  <form [formGroup]="registerForm" (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstname">Firstname:</label>
+      <input
+        type="text"
+        id="firstname"
+        formControlName="firstname"
+        placeholder="Firstname..."
+        required
+      />
+      <label for="lastname">Lastname:</label>
+      <input
+        type="text"
+        id="lastname"
+        formControlName="lastname"
+        placeholder="Lastname..."
+        required
+      />
+      <label for="email">E-Mail:</label>
+      <input
+        type="text"
+        id="email"
+        formControlName="email"
+        placeholder="E-Mail..."
+        required
+      />
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        formControlName="username"
+        placeholder="Username..."
+        required
+      />
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="Password..."
+        required
+      />
+    </div>
+    <button type="submit">Registrate</button>
+  </form>
+  <p>Already have an account? <a routerLink="/login">Login here</a></p>
+</div>

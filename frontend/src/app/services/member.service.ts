@@ -1,21 +1,24 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment.development';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment.development';
 import { Member } from '../models/member';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MemberService {
-  private url: string = environment.url + "/api/member/";
+  private url: string = environment.url + "api/member/";
 
   constructor(private http: HttpClient) { }
 
-  public addMember(member: Member): Observable<Member> {
-    return this.http.post<Member>(this.url + "addMember", member);
+  public login(member: Member): Observable<Member> {
+    return this.http.post<Member>(this.url + "login", member);
   }
 
+  public register(member: Member): Observable<Member> {
+    return this.http.post<Member>(this.url + "registrate", member);
+  }
   public editMember(member: Member): Observable<Member> {
     return this.http.put<Member>(this.url + "updateMember", member);
   }
@@ -33,4 +36,6 @@ export class MemberService {
   public getAllMembers(): Observable<Member[]> {
     return this.http.get<Member[]>(this.url + "getAllMembers");
   }
+
+
 }

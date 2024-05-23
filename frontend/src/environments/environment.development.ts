@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    url: 'https://' + location.hostname + ':8082'
+    url: 'http://' + location.hostname + ':8080/'
 };
