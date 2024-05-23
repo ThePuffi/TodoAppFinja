@@ -34,7 +34,7 @@ export class LoginComponent {
       //Wenn response ohne Fehler da ist
       (response) => {
         if(response != null) {
-          this.auth.login();
+          this.auth.login(); //setzen der Projektweiten Variable, um festzulegen, ob man eingeloggt ist
           this.router.navigate(["/dashboard"])
         }
       },
