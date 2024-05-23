@@ -1,5 +1,15 @@
-<app-sidenav></app-sidenav>
-
-<div class="main-content">
-  <router-outlet />
+<div class="main">
+  <div class="nav">
+    <app-sidenav></app-sidenav>
+  </div>
+  <div class="main-content">
+    <header class="header">
+      <div class="logout">
+        <button>
+          Logout
+        </button>
+      </div>
+    </header>
+    <router-outlet></router-outlet>
+  </div>
 </div>
