@@ -1,5 +1,8 @@
 <div class="login-container">
-  <h1>register</h1>
+  <h1>Register</h1>
+  @if(showErrorMessage) {
+  <p>{{ showErrorMessage }}</p>
+  }
   <form [formGroup]="registerForm" (submit)="onSubmit()">
     <div class="form-group">
       <label for="firstname">Firstname:</label>
@@ -18,6 +21,14 @@
         placeholder="Lastname..."
         required
       />
+      <label for="email">E-Mail:</label>
+      <input
+        type="text"
+        id="email"
+        formControlName="email"
+        placeholder="E-Mail..."
+        required
+      />
       <label for="username">Username:</label>
       <input
         type="text"
@@ -30,7 +41,7 @@
       <input
         type="password"
         id="password"
-        formControlName="username"
+        formControlName="password"
         placeholder="Password..."
         required
       />
