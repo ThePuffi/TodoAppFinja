@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.NonNull;
 
 @Entity
 @Getter
@@ -16,7 +17,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private String color;
 }

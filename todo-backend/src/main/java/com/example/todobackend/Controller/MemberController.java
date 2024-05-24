@@ -38,6 +38,7 @@ public class MemberController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
+    
     @GetMapping("/getAllMembers")
     public ResponseEntity<List<Member>> getAllMembers() {
         return new ResponseEntity<>(this.memberService.getAllMembers(), HttpStatus.FOUND);
