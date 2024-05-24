@@ -3,6 +3,7 @@ package com.example.todobackend.Entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.NonNull;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -17,14 +18,19 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private boolean status;
 
+    @NonNull
     private long categoryId;
 
+    @NonNull
     private Date dueDate;
 
+    @NonNull
     private String description;
 
     @ManyToMany

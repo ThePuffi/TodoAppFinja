@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MemberService } from '../../services/member.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,  RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [ReactiveFormsModule,  RouterOutlet, RouterLink, RouterLinkActive, MatInputModule, MatFormFieldModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -20,8 +22,8 @@ export class LoginComponent {
   constructor(private fb: FormBuilder, private router: Router, private memberService: MemberService, private auth: AuthService) {
     //initialisieren der Formgroup
     this.loginForm = this.fb.group({
-      username: [''],
-      password: ['']
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
   }
 

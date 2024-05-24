@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MemberService } from '../../services/member.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,  RouterOutlet, RouterLink, RouterLinkActive, MatInputModule, MatFormFieldModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -17,11 +19,11 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, private router: Router, private memberService: MemberService, private auth: AuthService) {
     this.registerForm = this.fb.group({
-      firstname: [''],
-      lastname: [''],
-      username: [''],
-      password: [''],
-      email: ['']
+      firstname: new FormControl('', Validators.required),
+      lastname: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required)
     });
   }
 
