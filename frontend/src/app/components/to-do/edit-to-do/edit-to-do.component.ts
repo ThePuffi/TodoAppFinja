@@ -13,6 +13,7 @@ import { ToDo } from '../../../models/to-do';
 import { CategoryService } from '../../../services/category.service';
 import { MemberService } from '../../../services/member.service';
 import { ToDoService } from '../../../services/to-do.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit-to-do',
@@ -34,6 +35,9 @@ export class EditToDoComponent {
   
   protected selectedMembers: Member[] = [];
 
+  protected _user: Observable<Member> = new Observable<Member>;
+  protected user?: Member;
+
   constructor(
     private todoService: ToDoService,
     private categoryService: CategoryService,
@@ -53,6 +57,13 @@ export class EditToDoComponent {
       members: new FormControl(todo.members, Validators.required)
     });   
     this.selectedMembers = todo.members
+
+    let userId = localStorage.getItem("userId");
+    if (userId) this._user = this.memberService.getMember(parseInt(userId));
+    this._user.subscribe(res => {
+      this.user = res;
+    });
+
     // Benutzer Liste mit Benutzern aus dem Backend befüllen.
     this.memberService.getAllMembers().subscribe(res => {
       this.memberList = res;
