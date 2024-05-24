@@ -1,5 +1,6 @@
 package com.example.todobackend.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,6 +35,7 @@ public class Member {
     private String eMail;
 
     @ManyToMany(mappedBy = "members")
+    @JsonIgnoreProperties("members") // Diese Annotation ignoriert die "members"-Eigenschaft während der Serialisierung, um unendliche Rekursion zu vermeiden.
     private Set<Todo> todos = new HashSet<>();
 
 }

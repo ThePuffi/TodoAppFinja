@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -33,24 +33,48 @@ export class AddToDoComponent {
   // Liste für die im Select angezeigten Benutzer/Partner erstellen.
   protected memberList: Member[] = [];
 
+  protected selectedMembers: Member[] = [{
+    email: "o@mail.de",
+    firstname: "o",
+    id: 1,
+    lastname: "w",
+    password: "123",
+    todos: [],
+    username: "o_w"
+  }];
+
   constructor(
     private todoService: ToDoService,
     private categoryService: CategoryService,
     private memberService: MemberService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<AddToDoComponent>
   ) {
     // ToDo-Form mit attributen befüllen.
     this.todoForm = this.formBuilder.group({
       name: new FormControl('', Validators.required),
       status: new FormControl(false, Validators.required),
-      categoryId: new FormControl(0, Validators.required),
+      categoryId: new FormControl(1),
       dueDate: new FormControl(new Date(), Validators.required),
-      description: new FormControl('', Validators.required),
-      members: new FormControl([], Validators.required)
+      description: new FormControl(''),
+      members: new FormControl([
+        {
+          email: "o@mail.de",
+          firstname: "o",
+          id: 1,
+          lastname: "w",
+          password: "123",
+          todos: [],
+          username: "o_w"
+        }
+      ])
     });
     // Benutzer Liste mit Benutzern aus dem Backend befüllen.
     this.memberService.getAllMembers().subscribe(res => {
       this.memberList = res;
+      // this.memberList.filter(res => (res.id !== 1));
+      console.log(this.memberList);
+      
     });
     // Kategorie Liste mit Kategorien aus dem Backend befüllen.
     this.categoryService.getAllCategories().subscribe(res => {
@@ -64,8 +88,9 @@ export class AddToDoComponent {
       // Die von Nutzer eingebenen Daten an das Backend übersenden.
       this.todoService.addTodo(this.todoForm.value).subscribe(res => {
         // Die von Nutzer eingebenen Daten an das ToDo-Component übersenden.
-        console.log(res);        
         this.addTodo.emit(this.todoForm.value);
+        // Dialog wieder schließen.
+        this.dialogRef.close();
       });
     }
   }

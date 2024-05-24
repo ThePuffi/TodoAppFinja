@@ -41,7 +41,7 @@ public class MemberController {
     
     @GetMapping("/getAllMembers")
     public ResponseEntity<List<Member>> getAllMembers() {
-        return new ResponseEntity<>(this.memberService.getAllMembers(), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.memberService.getAllMembers(), HttpStatus.OK);
     }
     @GetMapping("/findMemberById")
     public ResponseEntity<Member> findMemberById(@RequestParam("MemberId") Long memberId) {

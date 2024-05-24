@@ -15,7 +15,7 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("api/todo")
 @RequiredArgsConstructor
-public class TodoController {
+public class  TodoController {
 
     private final TodoService todoService;
 
@@ -25,7 +25,7 @@ public class TodoController {
     }
     @GetMapping("/getAllTodos")
     public ResponseEntity<List<Todo>> getAllTodos() {
-        return new ResponseEntity<>(this.todoService.getAllTodos(), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.todoService.getAllTodos(), HttpStatus.OK);
     }
     @GetMapping("/findTodoById")
     public ResponseEntity<Todo> findTodoById(@RequestParam("TodoId") Long todoId) {

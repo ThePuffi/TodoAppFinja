@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ToDoService {
-  private url: string = environment.url + "/api/todo/";
+  private url: string = environment.url + "api/todo/";
 
   constructor(private http: HttpClient) { }
 
