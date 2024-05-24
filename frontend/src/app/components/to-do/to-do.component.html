@@ -5,7 +5,7 @@
             <button class="add-todo" (click)="openAddTodoModal()">ToDo hinzufügen</button>
         </div>
         <div class="todo-controls">
-            <input type="search" id="search" placeholder="Suche nach Aufgabe" (change)="updateSearch($event)">
+            <input type="search" id="search" placeholder="Suche nach Aufgabe" (input)="updateSearch($event)">
             <select (change)="updateStatus($event)">
                 @for (status of statusList; track $index) {
                 <option [value]="status">{{status}}</option>

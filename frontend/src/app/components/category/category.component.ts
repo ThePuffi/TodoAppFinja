@@ -80,15 +80,8 @@ export class CategoryComponent {
   protected displayedCategoryData: Category[] = [];
 
   protected updateSearch(event: any) {
-    // Den Wert aus dem Select wert holen.
-    this.activeStatus = event.target.value;
-    if (this.activeStatus === "OFFEN") {
-      // Die angezeigten Category Daten so bearbeiten, dass nur Category's mit dem Status "OFFEN" angezeigt werden.
-      this.displayedCategoryData = this.categoryData.filter(data => data.name == event.target.value);
-    } else {
-      // Die angezeigten Category Daten wieder auf die ungefiltert setzen. 
-      this.displayedCategoryData = this.categoryData.slice();
-    }
+    // Die angezeigten ToDo Daten so bearbeiten, dass nur ToDo's mit dem gesuchten Keyword angezeigt werden.
+    this.displayedCategoryData = this.categoryData.filter(data => data.name.includes(event.target.value));
   }
 
 }

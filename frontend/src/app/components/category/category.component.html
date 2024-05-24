@@ -5,7 +5,7 @@
             <button class="add-category" (click)="openAddCategoryModal()">Kategorie hinzufügen</button>
         </div>
         <div class="category-controls">
-            <input type="search" id="search" placeholder="Suche nach Aufgabe" (change)="updateSearch($event)">
+            <input type="search" id="search" placeholder="Suche nach Aufgabe" (input)="updateSearch($event)">
         </div>
         <table class="categories-table">
             <thead>

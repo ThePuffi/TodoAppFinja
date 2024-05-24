@@ -104,15 +104,8 @@ export class ToDoComponent {
   }
 
   protected updateSearch(event: any) {
-    // Den Wert aus dem Select wert holen.
-    this.activeStatus = event.target.value;
-    if (this.activeStatus === "OFFEN") {
-      // Die angezeigten ToDo Daten so bearbeiten, dass nur ToDo's mit dem Status "OFFEN" angezeigt werden.
-      this.displayedTodoData = this.todoData.filter(data => data.name == event.target.value);
-    } else {
-      // Die angezeigten ToDo Daten wieder auf die ungefiltert setzen. 
-      this.displayedTodoData = this.todoData.slice();
-    }
+    // Die angezeigten ToDo Daten so bearbeiten, dass nur ToDo's mit dem gesuchten Keyword angezeigt werden.
+    this.displayedTodoData = this.todoData.filter(data => data.name.includes(event.target.value));
   }
 
 }
