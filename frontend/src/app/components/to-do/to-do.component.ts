@@ -83,8 +83,8 @@ export class ToDoComponent {
           {
             id: 1,
             username: "ole_w",
-            firstName: "Ole",
-            lastName: "W",
+            firstname: "Ole",
+            lastname: "W",
             password: "1234",
             email: "ole@mail.de",
           }
@@ -101,8 +101,8 @@ export class ToDoComponent {
           {
             id: 1,
             username: "ole_w",
-            firstName: "Ole",
-            lastName: "W",
+            firstname: "Ole",
+            lastname: "W",
             password: "1234",
             email: "ole@mail.de",
           }
