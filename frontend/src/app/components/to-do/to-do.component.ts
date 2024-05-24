@@ -6,6 +6,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ToDoService } from '../../services/to-do.service';
 import { EditToDoComponent } from './edit-to-do/edit-to-do.component';
 import { DeleteToDoComponent } from './delete-to-do/delete-to-do.component';
+import { Observable } from 'rxjs';
+import { Member } from '../../models/member';
+import { MemberService } from '../../services/member.service';
 
 @Component({
   selector: 'app-to-do',
@@ -21,18 +24,26 @@ export class ToDoComponent {
   protected activeStatus: string = this.statusList[0];
 
   protected showModal: boolean = false;
+  
+  protected _user: Observable<Member> = new Observable<Member>;
+  protected user?: Member;
 
   constructor(
     private todoService: ToDoService,
+    private memberService: MemberService,
     public dialog: MatDialog
   ) {
-    this.getAllTodos();
+    let userId = localStorage.getItem("userId");
+    if (userId) this._user = this.memberService.getMember(parseInt(userId));
+    this._user.subscribe(res => {
+      this.user = res;
+      this.getAllTodos();
+    });
   }
 
   openAddTodoModal() {
     const dialogRef = this.dialog.open(AddToDoComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       this.getAllTodos();
     });
   }
@@ -42,7 +53,6 @@ export class ToDoComponent {
       data: todo,
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       this.getAllTodos();
     });
   }
@@ -52,7 +62,6 @@ export class ToDoComponent {
       data: todo,
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       this.getAllTodos();
     });
   }
@@ -69,9 +78,8 @@ export class ToDoComponent {
   protected todoData: ToDo[] = [];
 
   protected getAllTodos() {
-    this.todoService.getAllTodos().subscribe(res => {
-      console.log(res);
-      
+    if (this.user && this.user.id)
+    this.todoService.getAllTodosByMemberId(this.user.id).subscribe(res => {
       this.todoData = res;
       this.displayedTodoData = this.todoData;
     });

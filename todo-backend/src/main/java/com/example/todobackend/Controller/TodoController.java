@@ -1,6 +1,7 @@
 package com.example.todobackend.Controller;
 
 
+import com.example.todobackend.Entity.Member;
 import com.example.todobackend.Entity.Todo;
 import com.example.todobackend.Service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,12 @@ public class  TodoController {
         return new ResponseEntity<>(this.todoService.addTodo(todo), HttpStatus.CREATED);
     }
     @GetMapping("/getAllTodos")
-    public ResponseEntity<List<Todo>> getAllTodos() {
-        return new ResponseEntity<>(this.todoService.getAllTodos(), HttpStatus.OK);
+    public ResponseEntity<List<Todo>> getAllTodosByMemberId(@RequestParam("MemberId") long memberId) {
+        return new ResponseEntity<>(this.todoService.getAllTodos(memberId), HttpStatus.OK);
     }
     @GetMapping("/findTodoById")
     public ResponseEntity<Todo> findTodoById(@RequestParam("TodoId") Long todoId) {
-        return new ResponseEntity<>(this.todoService.getTodo(todoId), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.todoService.getTodo(todoId), HttpStatus.OK);
     }
     @PutMapping("/updateTodo")
     public ResponseEntity<Todo> updateTodo(@RequestBody Todo todo) {

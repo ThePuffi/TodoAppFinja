@@ -45,7 +45,7 @@ public class MemberController {
     }
     @GetMapping("/findMemberById")
     public ResponseEntity<Member> findMemberById(@RequestParam("MemberId") Long memberId) {
-        return new ResponseEntity<>(this.memberService.getMember(memberId), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.memberService.getMember(memberId), HttpStatus.OK);
     }
     @PutMapping("/updateMember")
     public ResponseEntity<Member> updateMember(@RequestBody Member member) {

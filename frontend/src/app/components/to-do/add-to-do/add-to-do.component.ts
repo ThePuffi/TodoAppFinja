@@ -13,6 +13,7 @@ import { Category } from '../../../models/category';
 import { Member } from '../../../models/member';
 import { MemberService } from '../../../services/member.service';
 import { ToDo } from '../../../models/to-do';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -43,6 +44,9 @@ export class AddToDoComponent {
     username: "o_w"
   }];
 
+  protected _user: Observable<Member> = new Observable<Member>;
+  protected user?: Member;
+
   constructor(
     private todoService: ToDoService,
     private categoryService: CategoryService,
@@ -57,24 +61,19 @@ export class AddToDoComponent {
       categoryId: new FormControl(1),
       dueDate: new FormControl(new Date(), Validators.required),
       description: new FormControl(''),
-      members: new FormControl([
-        {
-          email: "o@mail.de",
-          firstname: "o",
-          id: 1,
-          lastname: "w",
-          password: "123",
-          todos: [],
-          username: "o_w"
-        }
-      ])
+      members: new FormControl([])
     });
+
+    let userId = localStorage.getItem("userId");
+    if (userId) this._user = this.memberService.getMember(parseInt(userId));
+    this._user.subscribe(res => {
+      this.todoForm.controls['members'].setValue([...this.todoForm.value.members, res]);
+      this.user = res;
+    });
+
     // Benutzer Liste mit Benutzern aus dem Backend befüllen.
     this.memberService.getAllMembers().subscribe(res => {
-      this.memberList = res;
-      // this.memberList.filter(res => (res.id !== 1));
-      console.log(this.memberList);
-      
+      this.memberList = res.filter(res1 => (res1.id !== this.user?.id));
     });
     // Kategorie Liste mit Kategorien aus dem Backend befüllen.
     this.categoryService.getAllCategories().subscribe(res => {
@@ -89,6 +88,8 @@ export class AddToDoComponent {
       this.todoService.addTodo(this.todoForm.value).subscribe(res => {
         // Die von Nutzer eingebenen Daten an das ToDo-Component übersenden.
         this.addTodo.emit(this.todoForm.value);
+        console.log(this.todoForm.value);
+        
         // Dialog wieder schließen.
         this.dialogRef.close();
       });

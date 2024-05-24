@@ -8,7 +8,10 @@ export class AuthService {
 
   private loggedIn = new BehaviorSubject<boolean>(false);  
 
-  constructor() { }
+  constructor() {
+    let userId = localStorage.getItem("userId");
+    if (userId) this.login();
+  }
   
   login() {
     this.loggedIn.next(true);

@@ -5,6 +5,9 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Appointment } from '../../models/appointment';
 import { AppointmentService } from '../../services/appointment.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Member } from '../../models/member';
+import { MemberService } from '../../services/member.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,14 +19,23 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
 
   protected statusList: string[] = ["ALLE", "OFFEN", "GESCHLOSSEN"];
+  protected _user: Observable<Member> = new Observable<Member>;
+  protected user?: Member;
 
   constructor(
     private todoService: ToDoService,
+    private memberService: MemberService,
     private appointmentService: AppointmentService,
     private router: Router
   ) {
-    this.getAllTodos();
-    this.getAllAppointments();
+
+    let userId = localStorage.getItem("userId");
+    if (userId) this._user = this.memberService.getMember(parseInt(userId));
+    this._user.subscribe(res => {
+      this.user = res;
+      this.getAllTodos();
+      this.getAllAppointments();
+    });
   }
 
   protected columnsTodo = [
@@ -39,57 +51,18 @@ export class DashboardComponent {
 
   protected displayedTodoData: ToDo[] = [];
   protected displayCalendarData: Appointment[] = [];
-  protected todoData: ToDo[] = []; //can be deleted in prod
 
    protected getAllTodos() {
-    this.todoService.getAllTodos().subscribe(res => {
-      const currentDate = new Date();
-      res.forEach(element => {
-        if(element.dueDate.getDate() <= currentDate.getDate() + 14) {
-          this.displayedTodoData = res;
-        }
+    if (this.user && this.user.id)
+    this.todoService.getAllTodosByMemberId(this.user.id).subscribe(res => {
+      const currentMonth = new Date().getMonth(); // Aktueller Monat (0-basiert, also Januar ist 0)
+      const currentYear = new Date().getFullYear(); // Aktuelles Jahr
 
+      this.displayedTodoData = res.filter(todo => {
+        const todoDate = new Date(todo.dueDate); // Annahme: `creationDate` ist das Feld mit dem Erstellungsdatum
+        return todoDate.getMonth() === currentMonth && todoDate.getFullYear() === currentYear;
       });
     });
-    this.todoData = [
-      {
-        id: 1,
-        name: "Projekt erstellen",
-        status: false,
-        categoryId: 1,
-        dueDate: new Date(),
-        description: "Description",
-        members: [
-          {
-            id: 1,
-            username: "ole_w",
-            firstname: "Ole",
-            lastname: "W",
-            password: "1234",
-            email: "ole@mail.de",
-          }
-        ]
-      },
-      {
-        id: 2,
-        name: "Projekt schön machen",
-        status: true,
-        categoryId: 2,
-        dueDate: new Date(),
-        description: "Description",
-        members: [
-          {
-            id: 1,
-            username: "ole_w",
-            firstname: "Ole",
-            lastname: "W",
-            password: "1234",
-            email: "ole@mail.de",
-          }
-        ]
-      }
-    ];
-    this.displayedTodoData = this.todoData;
   }
 
   protected getAllAppointments() {
@@ -113,7 +86,6 @@ export class DashboardComponent {
       },
         
     ]
-    this.displayedTodoData = this.todoData;
   }
 
   navigate(path: string){

@@ -37,6 +37,7 @@ export class LoginComponent {
       (response) => {
         if(response != null) {
           this.auth.login(); //setzen der Projektweiten Variable, um festzulegen, ob man eingeloggt ist
+          if (response.id) localStorage.setItem("userId", response.id.toLocaleString());
           this.router.navigate(["/dashboard"])
         }
       },

@@ -50,7 +50,7 @@ public class TodoService {
         throw new IllegalArgumentException("Todo does not exit");
     }
 
-    public List<Todo> getAllTodos() {
-        return todoRepository.findAll();
+    public List<Todo> getAllTodos(long memberId) {
+        return todoRepository.findTodosByMemberId(memberId);
     }
 }

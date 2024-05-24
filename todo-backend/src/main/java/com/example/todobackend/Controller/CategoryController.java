@@ -29,7 +29,7 @@ public class CategoryController {
     }
     @GetMapping("/findCategoryById")
     public ResponseEntity<Category> findCategoryById(@RequestParam("CategoryId") Long categoryId) {
-        return new ResponseEntity<>(this.categoryService.getCategory(categoryId), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.categoryService.getCategory(categoryId), HttpStatus.OK);
     }
     @PutMapping("/updateCategory")
     public ResponseEntity<Category> updateCategory(@RequestBody Category category) {

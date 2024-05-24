@@ -30,7 +30,8 @@ export class ToDoService {
     return this.http.delete<ToDo>(this.url + "deleteTodo", {params: httpParams});
   }
 
-  public getAllTodos(): Observable<ToDo[]> {
-    return this.http.get<ToDo[]>(this.url + "getAllTodos");
+  public getAllTodosByMemberId(memberId: number): Observable<ToDo[]> {
+    let httpParams = new HttpParams().set("MemberId", memberId);
+    return this.http.get<ToDo[]>(this.url + "getAllTodos", {params: httpParams});
   }
 }
