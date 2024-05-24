@@ -11,6 +11,7 @@ import { AuthService } from './services/auth.service';
     imports: [RouterOutlet, SidenavComponent]
 })
 export class AppComponent {
+
   title = 'ToDo App';
   isLoggedIn: boolean = false;
   constructor(private auth: AuthService) {
@@ -18,4 +19,8 @@ export class AppComponent {
       this.isLoggedIn = status;
     });
   }
+
+  logout() {
+    this.auth.logout();
+    }
 }

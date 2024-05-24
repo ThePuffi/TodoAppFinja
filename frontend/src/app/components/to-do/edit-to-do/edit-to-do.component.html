@@ -37,7 +37,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Partner</mat-label>
-              <mat-select [formControl]="member" multiple [(value)]="selectedMembers">
+              <mat-select formControlName="members" multiple [(value)]="selectedMembers">
                 @for (member of memberList; track $index) {
                   <mat-option [value]="member">{{member.firstname}} {{member.lastname}}</mat-option>
                 }

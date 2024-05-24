@@ -34,18 +34,6 @@ export class EditToDoComponent {
   
   protected selectedMembers: Member[] = [];
 
-  member: FormControl = new FormControl(['o w']);
-
-  memberObj: Member = {
-    email: "o@mail.de",
-    firstname: "o",
-    id: 1,
-    lastname: "w",
-    password: "123",
-    todos: [],
-    username: "o_w"
-}
-
   constructor(
     private todoService: ToDoService,
     private categoryService: CategoryService,

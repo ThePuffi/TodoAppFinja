@@ -37,6 +37,7 @@ export class RegisterComponent {
       (response) => {
         if(response != null) {
           this.auth.login();
+          if (response.id) localStorage.setItem("userId", response.id.toLocaleString());
           this.router.navigate(["/dashboard"])
         }
       },

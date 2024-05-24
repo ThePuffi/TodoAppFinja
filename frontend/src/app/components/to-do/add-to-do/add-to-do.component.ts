@@ -67,13 +67,12 @@ export class AddToDoComponent {
     let userId = localStorage.getItem("userId");
     if (userId) this._user = this.memberService.getMember(parseInt(userId));
     this._user.subscribe(res => {
-      this.todoForm.controls['members'].setValue([...this.todoForm.value.members, res]);
       this.user = res;
     });
 
     // Benutzer Liste mit Benutzern aus dem Backend befüllen.
     this.memberService.getAllMembers().subscribe(res => {
-      this.memberList = res.filter(res1 => (res1.id !== this.user?.id));
+      this.memberList = res;
     });
     // Kategorie Liste mit Kategorien aus dem Backend befüllen.
     this.categoryService.getAllCategories().subscribe(res => {

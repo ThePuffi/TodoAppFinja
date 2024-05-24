@@ -39,7 +39,7 @@
             <mat-label>Partner</mat-label>
             <mat-select formControlName="members" multiple>
               @for (member of memberList; track $index) {
-                <mat-option [value]="member">{{member.firstname }} {{ member.lastname}}</mat-option>
+                <mat-option [value]="member">{{member.firstname }} {{ member.lastname}} {{user?.id === member.id ? "(Ich)" : ""}}</mat-option>
               }
             </mat-select>
           </mat-form-field>
