@@ -1,1 +1,91 @@
-<p>dashboard works!</p>
+<div class="main-container">
+  <div class="todo-container" (click)="navigate('/todos')">
+    <div class="head">
+      <h1>Anstehende ToDo's (nächsten 2 Wochen)</h1>
+    </div>
+    @if (displayedTodoData.length === 0) {
+    <div>Keine Daten vorhanden</div>
+    } @else {
+    <table class="todos-table">
+      <thead>
+        <tr class="table-head-row">
+          @for (column of columnsTodo; track $index) {
+          <th class="table-header-cell">
+            {{ column.label }}
+          </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of displayedTodoData; track $index) {
+        <tr class="table-body-row">
+          <td class="table-data-cell">
+            {{ row.name }}
+          </td>
+          <td class="table-data-cell">
+            {{ row.dueDate | date : "d.M.yyyy" }}
+          </td>
+          <td class="table-data-cell status">
+            <span
+              class="status"
+              [ngClass]="{
+                open: row.status == false,
+                closed: row.status == true
+              }"
+            >
+              {{ row.status ? "GESCHLOSSEN" : "OFFEN" }}
+            </span>
+          </td>
+        </tr>
+        }
+      </tbody>
+      <!--tfoot Element placeholding for design-->
+      <tfoot>
+        <tr>
+          <td colspan="3"></td>
+        </tr>
+      </tfoot>
+    </table>
+    }
+  </div>
+
+  <!-------------------------------APPOINTMENT CONTAINER----------------------------------->
+  <div class="appointment-container" (click)="navigate('/calendar')">
+    <div class="head">
+      <h1>Anstehende Termine</h1>
+    </div>
+    @if (displayCalendarData.length === 0) {
+    <div>Keine Daten vorhanden</div>
+    } @else {
+    <table class="todos-table">
+      <thead>
+        <tr class="table-head-row">
+          @for (column of columnsAppointment; track $index) {
+          <th class="table-header-cell">
+            {{ column.label }}
+          </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of displayCalendarData; track $index) {
+        <tr class="table-body-row">
+          <td class="table-data-cell">
+            {{ row.title }}
+          </td>
+          <td class="table-data-cell">
+            {{ row.date | date : "d.M.yyyy" }}
+          </td>
+        </tr>
+        }
+      </tbody>
+      <!--tfoot Element placeholding for design-->
+      <tfoot>
+        <tr>
+          <td colspan="3"></td>
+        </tr>
+      </tfoot>
+    </table>
+    }
+  </div>
+</div>
