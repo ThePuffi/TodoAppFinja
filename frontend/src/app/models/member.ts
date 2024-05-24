@@ -1,7 +1,7 @@
 import { ToDo } from "./to-do";
 
 export interface Member {
-    id: number;
+    id?: number;
     username: string;
     firstname?: string;
     lastname?: string;

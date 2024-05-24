@@ -1,0 +1,138 @@
+.categories {
+  border-radius: 1rem;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.categories-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.categories-table th,
+.categories-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+thead th:last-child,
+tbody td:last-child {
+  text-align: right;
+}
+
+thead th:first-child,
+tbody td:first-child {
+  text-align: left;
+}
+
+.categories-table tfoot td {
+  border-bottom: 0;
+}
+
+.categories-table th {
+  background-color: rgb(235, 235, 245);
+  font-weight: bold;
+  color: #4b4b7c;
+}
+
+.categories-table th:first-child {
+    border-top-left-radius: 1rem;
+}
+
+.categories-table th:last-child {
+    border-top-right-radius: 1rem;
+}
+
+.categories-table tbody tr:nth-child(even) {
+  background-color: #f8f8fc;
+}
+
+.categories-table .color {
+  padding: 0px 10px;
+  border-radius: 360px;
+  font-weight: bold;
+}
+
+.categories-table .action {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #7c7ab7;
+  padding: 5px;
+}
+
+.categories-table .action.edit {
+  color: #5bc0de;
+}
+
+.categories-table .action.delete {
+  color: #d9534f;
+}
+
+.categories-table .action.more {
+  color: #5bc0de;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #4b4b7c;
+}
+
+.category-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.category-controls input[type="search"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 40px;
+  line-height: 40px;
+  flex: 1;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.head button {
+  padding: 10px;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #6160d4;
+  color: white;
+  cursor: pointer;
+}
+
+.categories-table tfoot {
+    background-color: rgb(235, 235, 245);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #4b4b7c;
+  font-weight: bold;
+}
+
+.categories-table tfoot td:first-child {
+    border-bottom-left-radius: 1rem;
+}
+
+.categories-table tfoot td:last-child {
+    border-bottom-right-radius: 1rem;
+}

@@ -1,7 +1,7 @@
 import { Member } from "./member";
 
 export interface ToDo {
-    id: number;
+    id?: number;
     name: string;
     status: boolean;
     categoryId: number;

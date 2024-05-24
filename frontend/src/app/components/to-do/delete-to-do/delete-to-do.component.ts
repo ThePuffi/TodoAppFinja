@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -12,7 +11,7 @@ import { ToDo } from '../../../models/to-do';
 @Component({
   selector: 'app-delete-to-do',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatDatepickerModule],
+  imports: [ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatInputModule],
   providers: [provideNativeDateAdapter()],
   templateUrl: './delete-to-do.component.html',
   styleUrl: './delete-to-do.component.scss'
@@ -29,9 +28,9 @@ export class DeleteToDoComponent {
   protected confirmDelete() {
     // Dem Backend den Befehl geben die ausgewählte Aufagbe zu löschen.
     console.log("delete: ", this.todo);
-    
-    this.todoService.deleteTodo(this.todo.id).subscribe(res => {
+    if (this.todo.id) this.todoService.deleteTodo(this.todo.id).subscribe(res => {
       this.deleteTodo.emit();
+      this.cancel();
     });
   }
   

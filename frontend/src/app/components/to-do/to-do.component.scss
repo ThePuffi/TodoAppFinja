@@ -1,8 +1,8 @@
 .todos {
-    border-radius: 1rem;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .todos-table {
@@ -21,6 +21,11 @@
 thead th:last-child,
 tbody td:last-child {
   text-align: right;
+}
+
+thead th:first-child,
+tbody td:first-child {
+  text-align: left;
 }
 
 .todos-table tfoot td {

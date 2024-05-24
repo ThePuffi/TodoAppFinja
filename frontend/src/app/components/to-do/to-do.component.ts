@@ -37,8 +37,10 @@ export class ToDoComponent {
     });
   }
 
-  openEditTodoModal() {
-    const dialogRef = this.dialog.open(EditToDoComponent);
+  openEditTodoModal(todo: ToDo) {
+    const dialogRef = this.dialog.open(EditToDoComponent, {
+      data: todo,
+    });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       this.getAllTodos();
@@ -68,48 +70,11 @@ export class ToDoComponent {
 
   protected getAllTodos() {
     this.todoService.getAllTodos().subscribe(res => {
+      console.log(res);
+      
       this.todoData = res;
       this.displayedTodoData = this.todoData;
     });
-    this.todoData = [
-      {
-        id: 1,
-        name: "Projekt erstellen",
-        status: false,
-        categoryId: 1,
-        dueDate: new Date(),
-        description: "Description",
-        members: [
-          {
-            id: 1,
-            username: "ole_w",
-            firstname: "Ole",
-            lastname: "W",
-            password: "1234",
-            email: "ole@mail.de",
-          }
-        ]
-      },
-      {
-        id: 2,
-        name: "Projekt schön machen",
-        status: true,
-        categoryId: 2,
-        dueDate: new Date(),
-        description: "Description",
-        members: [
-          {
-            id: 1,
-            username: "ole_w",
-            firstname: "Ole",
-            lastname: "W",
-            password: "1234",
-            email: "ole@mail.de",
-          }
-        ]
-      }
-    ];
-    this.displayedTodoData = this.todoData;
   }
 
   // Die angezeigten ToDo Daten auf die vom Backend gesendeten ToDo Daten setzen.

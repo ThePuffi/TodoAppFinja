@@ -18,7 +18,7 @@
             <input
               matInput
               [matDatepicker]="picker"
-              formControlName="members"
+              formControlName="dueDate"
               required
             />
             <mat-datepicker-toggle
@@ -33,16 +33,13 @@
               matInput
               placeholder="Beschreibung"
               formControlName="description"
-              required
             />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Partner</mat-label>
-            <mat-select formControlName="members" required>
+            <mat-select formControlName="members" multiple [(value)]="selectedMembers">
               @for (member of memberList; track $index) {
-              <mat-option [value]="member.id">{{
-                member.firstname && member.lastname
-              }}</mat-option>
+                <mat-option [value]="member">{{member.firstname }} {{ member.lastname}}</mat-option>
               }
             </mat-select>
           </mat-form-field>

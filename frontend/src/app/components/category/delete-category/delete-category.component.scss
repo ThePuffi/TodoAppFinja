@@ -4,16 +4,7 @@
     align-items: center;
 }
 
-.add-todo {
-    padding: 10px;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: #6160d4;
-    color: white;
-    cursor: pointer;
-}
-
-.cancel {
+.delete-category {
     padding: 10px;
     border: none;
     border-radius: 0.5rem;
@@ -22,7 +13,12 @@
     cursor: pointer;
 }
 
-.form-fields {
-    display: grid;
-	grid-template-columns: repeat(1, minmax(0, 1fr));
+.cancel {
+    padding: 10px;
+    border: none;
+    border-radius: 0.5rem;
+    outline:1px solid rgb(136, 136, 136);
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
 }

@@ -25,10 +25,10 @@ public class CategoryController {
     }
     @GetMapping("/getAllCategories")
     public ResponseEntity<List<Category>> getAllCategories() {
-        return new ResponseEntity<>(this.categoryService.getAllCategories(), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.categoryService.getAllCategories(), HttpStatus.OK);
     }
     @GetMapping("/findCategoryById")
-    public ResponseEntity<Category> findCategoryById(@RequestParam Long categoryId) {
+    public ResponseEntity<Category> findCategoryById(@RequestParam("CategoryId") Long categoryId) {
         return new ResponseEntity<>(this.categoryService.getCategory(categoryId), HttpStatus.FOUND);
     }
     @PutMapping("/updateCategory")
@@ -37,7 +37,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/deleteCategory")
-    public ResponseEntity<HttpStatus> deleteCategory(@RequestParam long categoryId) {
+    public ResponseEntity<HttpStatus> deleteCategory(@RequestParam("CategoryId") long categoryId) {
         this.categoryService.deleteCategory(categoryId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
