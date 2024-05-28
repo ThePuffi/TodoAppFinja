@@ -1,0 +1,17 @@
+@if (isLoggedIn) {
+<div class="main">
+  <div class="nav">
+    <app-sidenav></app-sidenav>
+  </div>
+  <div class="main-content">
+    <header class="header">
+      <div class="logout">
+        <button (click)="logout()">Logout</button>
+      </div>
+    </header>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+} @else {
+<router-outlet></router-outlet>
+}
