@@ -35,9 +35,10 @@ In einer docker-compose.yaml wird definiert mit welchen Attributen der Container
 9. Docker Anwendung starten
 10. Als erstes muss immer die Datenbank gestartet werden!!! => CMD aufrufen => Verzeichnis /todo-backend suchen bzw. aufrufen => "docker compose up" ausführen (Einmalig! Danach ist der Container in Docker Desktop zu finden und per Click zu starten)
 11. todo-backend in Intellij öffnen
-12. Backend starten
-13. frontend in Visual Studio Code öffnen
-14. CommandLine in Visual Studio Code öffnen
-15. Im "frontend" Verzeichnis folgenden Befehl eingeben: "npm i"
-16. Im selben Verzeichnis folgenden Befehl eingeben: "ng s -o" (Kurzform für: angular start --open)
-17. Jetzt sollte alles funktionieren
+12. WICHTIG: In IntelliJ muss Java 17 als SDK definiert werden. Dafür einfach die Main Datei "TodoBackendApplication aufrufen". Oben taucht ein Link auf "Setup SDK". Raufklicken. Download SDK auswählen. Amazon-Coretto-17 auswählen.
+13. Backend starten
+14. frontend in Visual Studio Code öffnen
+15. CommandLine in Visual Studio Code öffnen
+16. Im "frontend" Verzeichnis folgenden Befehl eingeben: "npm i"
+17. Im selben Verzeichnis folgenden Befehl eingeben: "ng s -o" (Kurzform für: angular start --open)
+18. Jetzt sollte alles funktionieren
