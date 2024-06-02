@@ -12,7 +12,7 @@ Benötig werden:
 
 ## Docker
 ### Was ist Docker?
-Mit Docker werden Anwendungen in Containern virtualisiert. Sie bilden sozusagen eine Virtuelle Maschine (nicht ganz richtig). Das heißt, auf eurem System läuft im Hintergrund ein anderes System mit bestimmten Resourcen.
+Mit Docker werden Anwendungen in Containern virtualisiert. Somit kann ein Bereich auf eurem System gebildet werden, der abgeschottet ist. In diesen Berreich läuft dann die gewählte Anwendung.
 
 ### Was sind Container?
 Ein Docker-Container ist eine Laufzeitumgebung mit allen notwendigen Komponenten wie Code, Abhängigkeiten und Bibliotheken, die benötigt werden, um den Anwendungscode auszuführen, ohne Abhängigkeiten von Host-Maschinen (euer PC) zu verwenden.
